@@ -30,6 +30,14 @@ await using var scope = app.Services.CreateAsyncScope();
 var db = scope.ServiceProvider.GetRequiredService<PdfGeneratorDb>();
 await db.Database.MigrateAsync();
 
+app.UseCors(
+    options => options
+        .SetIsOriginAllowed(_ => true)
+        .AllowAnyMethod()
+        .AllowAnyHeader()
+        .AllowCredentials()
+);
+
 app.UseHangfireDashboard();
 
 app.UseSwagger();
