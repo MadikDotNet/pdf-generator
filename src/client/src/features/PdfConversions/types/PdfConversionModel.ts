@@ -10,5 +10,4 @@ export interface PdfConversionModel {
 export enum ConversionStatus {
     InProcess = 1,
     Completed = 2,
-    Error = 3
 }

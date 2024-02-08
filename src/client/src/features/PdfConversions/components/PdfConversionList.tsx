@@ -11,7 +11,6 @@ const PdfConversionList: React.FC = () => {
         const fetchConversions = async () => {
             try {
                 const response: Response = await fetch('http://207.180.214.41:8080/PdfConversion');
-                console.log(response.json())
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
