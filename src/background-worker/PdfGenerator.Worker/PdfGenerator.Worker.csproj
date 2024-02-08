@@ -1,0 +1,42 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <OutputType>Exe</OutputType>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Hangfire" Version="1.8.9"/>
+        <PackageReference Include="Hangfire.PostgreSql" Version="1.20.5"/>
+        <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.2.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\building-blocks\PdfGenerator.FileStorage\PdfGenerator.FileStorage.csproj" />
+      <ProjectReference Include="..\..\building-blocks\PdfGenerator.Observability\PdfGenerator.Observability.csproj" />
+      <ProjectReference Include="..\..\web-server\PdfGenerator.Infrastructure\PdfGenerator.Infrastructure.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="appsettings.json" />
+      <Content Include="appsettings.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="PdfGenerator.Application">
+        <HintPath>..\..\web-server\PdfGenerator.Application\bin\Debug\net8.0\PdfGenerator.Application.dll</HintPath>
+      </Reference>
+      <Reference Include="PdfGenerator.Infrastructure">
+        <HintPath>..\..\web-server\PdfGenerator.Infrastructure\bin\Debug\net8.0\PdfGenerator.Infrastructure.dll</HintPath>
+      </Reference>
+      <Reference Include="PdfGenerator.Infrastructure.DataAccess">
+        <HintPath>..\..\web-server\PdfGenerator.Infrastructure.DataAccess\bin\Debug\net8.0\PdfGenerator.Infrastructure.DataAccess.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+</Project>

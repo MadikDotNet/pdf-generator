@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Content Include="..\.dockerignore">
+        <Link>.dockerignore</Link>
+      </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Properties\launchSettings.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\building-blocks\PdfGenerator.Observability\PdfGenerator.Observability.csproj" />
+      <ProjectReference Include="..\..\building-blocks\PdfGenerator.Shared\PdfGenerator.Shared.csproj" />
+      <ProjectReference Include="..\PdfGenerator.Application\PdfGenerator.Application.csproj" />
+      <ProjectReference Include="..\PdfGenerator.Infrastructure.DataAccess\PdfGenerator.Infrastructure.DataAccess.csproj" />
+      <ProjectReference Include="..\PdfGenerator.Infrastructure\PdfGenerator.Infrastructure.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Hangfire.PostgreSql" Version="1.20.5" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.1">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    </ItemGroup>
+
+</Project>
