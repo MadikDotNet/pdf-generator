@@ -1,5 +1,6 @@
 using Hangfire;
 using Hangfire.PostgreSql;
+using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,6 +10,7 @@ using PdfGenerator.Application.PdfConversions.Profiles;
 using PdfGenerator.FileStorage.Extensions;
 using PdfGenerator.Infrastructure.DataAccess;
 using PdfGenerator.Infrastructure.Extensions;
+using PdfGenerator.Messaging.Extensions;
 using PdfGenerator.Observability.Extensions;
 using PdfGenerator.Shared.Exceptions;
 using Serilog;
@@ -46,6 +48,14 @@ public class PdfGeneratorWorker(string[] args)
         Builder.Services.AddScoped<IPdfConversionRepository, PdfConversionRepository>();
         Builder.Services.RegisterMinioFileStorage(Builder.Configuration);
         Builder.Services.AddAutoMapper(typeof(PdfConversionProfile).Assembly);
+        Builder.Services.AddMassTransit(x =>
+        {
+            x.UsingRabbitMq((hostContext, cfg) =>
+            {
+                cfg.SetHost(Builder.Configuration);
+                cfg.ConfigureEndpoints(hostContext);
+            });
+        });
 
         var app = Builder.Build();
         

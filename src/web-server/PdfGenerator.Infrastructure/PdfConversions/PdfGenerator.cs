@@ -2,7 +2,7 @@ using PdfGenerator.Application.PdfConversions.Services;
 using PuppeteerSharp;
 using PuppeteerSharp.Media;
 
-namespace PdfGenerator.Infrastructure;
+namespace PdfGenerator.Infrastructure.PdfConversions;
 
 /// <inheritdoc/>
 public class PdfGenerator : IPdfGenerator

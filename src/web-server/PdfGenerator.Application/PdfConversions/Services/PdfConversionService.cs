@@ -1,9 +1,11 @@
 using System.Text;
 using Hangfire;
+using MassTransit;
 using Microsoft.Extensions.Logging;
 using PdfGenerator.Application.PdfConversions.Models;
 using PdfGenerator.Domain.PdfConversions;
 using PdfGenerator.FileStorage.Abstractions;
+using PdfGenerator.IntegrationEvents;
 using PdfGenerator.Shared;
 using PdfGenerator.Shared.Binary;
 
@@ -14,7 +16,8 @@ public class PdfConversionService(
     IFileStorageService fileStorageService,
     IPdfConversionRepository pdfConversionRepository,
     ILogger<PdfConversionService> logger,
-    IPdfGenerator pdfGenerator) : IPdfConversionService
+    IPdfGenerator pdfGenerator,
+    IPublishEndpoint publishEndpoint) : IPdfConversionService
 {
     public Task<List<PdfConversionModel>> GetAllPdfConversionsAsync(CancellationToken cancellationToken)
     {
@@ -42,6 +45,8 @@ public class PdfConversionService(
         
         logger.LogInformation("[{ConversionId}] Conversion successfully queued", conversion.Id);
 
+        await publishEndpoint.Publish(new NewConversionQueued());
+
         return Result.Success;
     }
 
@@ -63,6 +68,8 @@ public class PdfConversionService(
 
         await pdfConversionRepository.SaveSuccessResultAsync(conversion.Id, resultPath);
 
+        await publishEndpoint.Publish(new HtmlConverted());
+        
         logger.LogInformation("[{ConversionId}] Successfully converted", conversionId);
     }
 

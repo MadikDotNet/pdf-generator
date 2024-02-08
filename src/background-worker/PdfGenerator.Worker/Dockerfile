@@ -9,6 +9,7 @@ WORKDIR /src
 COPY building-blocks/PdfGenerator.FileStorage/PdfGenerator.FileStorage.csproj building-blocks/PdfGenerator.FileStorage/
 COPY building-blocks/PdfGenerator.Observability/PdfGenerator.Observability.csproj building-blocks/PdfGenerator.Observability/
 COPY building-blocks/PdfGenerator.Shared/PdfGenerator.Shared.csproj building-blocks/PdfGenerator.Shared/
+COPY building-blocks/PdfGenerator.Messaging/PdfGenerator.Messaging.csproj building-blocks/PdfGenerator.Messaging/
 
 COPY web-server/PdfGenerator.Domain/PdfGenerator.Domain.csproj web-server/PdfGenerator.Domain/
 COPY web-server/PdfGenerator.Application/PdfGenerator.Application.csproj web-server/PdfGenerator.Application/
@@ -24,6 +25,7 @@ COPY web-server/PdfGenerator.Domain web-server/PdfGenerator.Domain
 COPY web-server/PdfGenerator.Application web-server/PdfGenerator.Application
 COPY web-server/PdfGenerator.Infrastructure web-server/PdfGenerator.Infrastructure
 COPY web-server/PdfGenerator.Infrastructure.DataAccess web-server/PdfGenerator.Infrastructure.DataAccess
+COPY web-server/PdfGenerator.IntegrationEvents/PdfGenerator.IntegrationEvents.csproj web-server/PdfGenerator.IntegrationEvents/
 COPY background-worker background-worker
 
 WORKDIR "background-worker/PdfGenerator.Worker"

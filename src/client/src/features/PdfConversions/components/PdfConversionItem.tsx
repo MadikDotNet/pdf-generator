@@ -18,6 +18,8 @@ const PdfConversionItem: React.FC<PdfConversionItemProps> = ({ conversion }) => 
         }
     };
 
+    const downloadUrl = `http://localhost:5000/pdfConversion/download-conversion/${conversion.resultPath}`;
+
     return (
         <div className={styles.conversionItem}>
             <h3 className={styles.fileName}>{conversion.originFileName}</h3>
@@ -26,7 +28,7 @@ const PdfConversionItem: React.FC<PdfConversionItemProps> = ({ conversion }) => 
             </span>
             {conversion.resultPath && (
                 <div className={styles.resultLinkContainer}>
-                    <a href={conversion.resultPath} className={styles.resultLink}>Download</a>
+                    <a href={downloadUrl} className={styles.resultLink} download>Download</a>
                 </div>
             )}
         </div>

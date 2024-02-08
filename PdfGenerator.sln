@@ -24,6 +24,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PdfGenerator.Domain", "src\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PdfGenerator.Application", "src\web-server\PdfGenerator.Application\PdfGenerator.Application.csproj", "{6EF31452-2FDC-46CC-8E42-8961351F65E5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PdfGenerator.Messaging", "src\building-blocks\PdfGenerator.Messaging\PdfGenerator.Messaging.csproj", "{A3509EB2-359C-45AE-A43A-2419B5331518}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PdfGenerator.IntegrationEvents", "src\web-server\PdfGenerator.IntegrationEvents\PdfGenerator.IntegrationEvents.csproj", "{797DE258-C27F-44C5-ADF0-B93486AE8035}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -66,6 +70,14 @@ Global
 		{6EF31452-2FDC-46CC-8E42-8961351F65E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6EF31452-2FDC-46CC-8E42-8961351F65E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6EF31452-2FDC-46CC-8E42-8961351F65E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3509EB2-359C-45AE-A43A-2419B5331518}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3509EB2-359C-45AE-A43A-2419B5331518}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3509EB2-359C-45AE-A43A-2419B5331518}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3509EB2-359C-45AE-A43A-2419B5331518}.Release|Any CPU.Build.0 = Release|Any CPU
+		{797DE258-C27F-44C5-ADF0-B93486AE8035}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{797DE258-C27F-44C5-ADF0-B93486AE8035}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{797DE258-C27F-44C5-ADF0-B93486AE8035}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{797DE258-C27F-44C5-ADF0-B93486AE8035}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{D7490EA3-3E15-4B00-9404-D8C15A524AA6} = {58F76750-D0C5-4D88-8398-3E23DD52CBB5}
@@ -77,5 +89,7 @@ Global
 		{C6DAD381-C47F-4439-8F3E-AAF876D62D9D} = {D196F0D4-791F-4398-8ED9-1A6490EE87DF}
 		{737BA20B-37A4-4413-8BC9-27EA992E38FC} = {D196F0D4-791F-4398-8ED9-1A6490EE87DF}
 		{6EF31452-2FDC-46CC-8E42-8961351F65E5} = {D196F0D4-791F-4398-8ED9-1A6490EE87DF}
+		{A3509EB2-359C-45AE-A43A-2419B5331518} = {CBEFE19A-B417-4749-8084-C2CF365B4612}
+		{797DE258-C27F-44C5-ADF0-B93486AE8035} = {D196F0D4-791F-4398-8ED9-1A6490EE87DF}
 	EndGlobalSection
 EndGlobal

@@ -14,7 +14,7 @@ public static class DependencyInjectionExtensions
     /// <param name="services">The <see cref="IServiceCollection"/> to which the PDF generator service will be added.</param>
     public static void RegisterPdfGenerator(this IServiceCollection services)
     {
-        services.AddSingleton<IPdfGenerator, PdfGenerator>();
+        services.AddSingleton<IPdfGenerator, PdfConversions.PdfGenerator>();
     }
 
     /// <summary>

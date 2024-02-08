@@ -1,11 +1,14 @@
 import React, {useState} from 'react';
 import styles from './FileUploadComponent.module.css';
 
+
 function FileUploadComponent() {
     const [selectedFile, setSelectedFile] = useState(null);
+    const [fileName, setFileName] = useState('No files selected');
 
-    const handleFileSelect = (event: any) => {
+    const handleFileSelect = (event:any) => {
         setSelectedFile(event.target.files[0]);
+        setFileName(event.target.files[0] ? event.target.files[0].name : 'No files selected');
     };
 
     const handleUpload = async () => {
@@ -15,19 +18,13 @@ function FileUploadComponent() {
         }
 
         const formData = new FormData();
-        formData.append('file', selectedFile);
+        formData.append('htmlContent', selectedFile);
 
         try {
-            const response = await fetch('http://207.180.214.41:8080/PdfConversion/queue-conversion', {
+            await fetch('http://localhost:5000/PdfConversion/queue-conversion', {
                 method: 'POST',
                 body: formData,
             });
-
-            if (response.ok) {
-                alert('File successfully uploaded');
-            } else {
-                alert('File upload failed');
-            }
         } catch (error) {
             console.error('Error during the upload', error);
             alert('File upload failed');
@@ -36,16 +33,18 @@ function FileUploadComponent() {
 
     return (
         <div>
-            <div className={styles.fileInputContainer}>
-                <label className={styles.fileInput}>
-                    <input type="file" onChange={handleFileSelect} style={{ display: 'none' }} />
-                    Не выбран ни один файл
-                </label>
-                <button onClick={handleUpload} className={styles.uploadButton}>
-                    Upload
-                </button>
-            </div>
-            {/* ... остальная часть компонента ... */}
+            <label className={styles.fileInputLabel}>
+                {fileName}
+                <input
+                    type="file"
+                    onChange={handleFileSelect}
+                    className={styles.fileInput}
+                    accept=".html"
+                />
+            </label>
+            <button onClick={handleUpload} className={styles.uploadButton}>
+                Upload
+            </button>
         </div>
     );
 }

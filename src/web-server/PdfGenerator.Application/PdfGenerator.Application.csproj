@@ -13,8 +13,14 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\building-blocks\PdfGenerator.FileStorage\PdfGenerator.FileStorage.csproj" />
+      <ProjectReference Include="..\..\building-blocks\PdfGenerator.Messaging\PdfGenerator.Messaging.csproj" />
       <ProjectReference Include="..\..\building-blocks\PdfGenerator.Shared\PdfGenerator.Shared.csproj" />
       <ProjectReference Include="..\PdfGenerator.Domain\PdfGenerator.Domain.csproj" />
+      <ProjectReference Include="..\PdfGenerator.IntegrationEvents\PdfGenerator.IntegrationEvents.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="PdfConversions\Consumers\" />
     </ItemGroup>
 
 </Project>

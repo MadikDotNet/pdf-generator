@@ -1,8 +1,4 @@
-.fileInputContainer {
-    margin-bottom: 20px;
-}
-
-.fileInput {
+.fileInputLabel {
     border: 1px solid #ccc;
     display: inline-block;
     padding: 6px 12px;
@@ -10,26 +6,18 @@
     border-radius: 4px;
     background-color: #f8f8f8;
     margin-right: 10px;
+    position: relative;
+    overflow: hidden;
 }
 
-.fileInput::-webkit-file-upload-button {
-    visibility: hidden;
-}
-
-.fileInput::before {
-    content: 'Выбор файла';
-    display: inline-block;
-    background: linear-gradient(top, #f9f9f9, #e3e3e3);
-    border: 1px solid #999;
-    border-radius: 3px;
-    padding: 5px 8px;
-    outline: none;
-    white-space: nowrap;
-    -webkit-user-select: none;
+.fileInput {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
     cursor: pointer;
-    text-shadow: 1px 1px #fff;
-    font-weight: 700;
-    font-size: 10pt;
 }
 
 .uploadButton {
