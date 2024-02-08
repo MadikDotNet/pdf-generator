@@ -29,9 +29,6 @@ const PdfConversionItem: React.FC<PdfConversionItemProps> = ({ conversion }) => 
                     <a href={conversion.resultPath} className={styles.resultLink}>Download</a>
                 </div>
             )}
-            {conversion.errorMessage && (
-                <p className={styles.errorMessage}>Error: {conversion.errorMessage}</p>
-            )}
         </div>
     );
 };

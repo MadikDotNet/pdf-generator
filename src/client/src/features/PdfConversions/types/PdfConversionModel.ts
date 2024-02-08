@@ -4,7 +4,7 @@ export interface PdfConversionModel {
     originFileName: string;
     originFilePath: string;
     resultPath?: string;
-    errorMessage?: string;
+    createdAt?: Date;
 }
 
 export enum ConversionStatus {

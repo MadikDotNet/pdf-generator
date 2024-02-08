@@ -36,6 +36,7 @@ public class PdfConversionRepository(PdfGeneratorDb db, IMapper mapper) : IPdfCo
     public Task<List<PdfConversionModel>> GetAllAsync(CancellationToken cancellationToken)
     {
         return db.PdfConversions
+            .OrderByDescending(q => q.CreatedAt)
             .ProjectTo<PdfConversionModel>(mapper.ConfigurationProvider)
             .ToListAsync(cancellationToken);
     }

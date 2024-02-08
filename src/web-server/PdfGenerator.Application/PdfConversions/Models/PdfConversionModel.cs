@@ -33,8 +33,7 @@ public class PdfConversionModel
     public string? ResultPath { get; set; }
 
     /// <summary>
-    /// Gets or sets the error message, if any, that occurred during the conversion.
-    /// This property can be null if the conversion completed successfully or has not yet resulted in an error.
+    /// Gets or sets time when the conversion was created.
     /// </summary>
-    public string? ErrorMessage { get; set; }
+    public required DateTime CreatedAt { get; set; }
 }
