@@ -17,6 +17,8 @@ services:
       context: src
       dockerfile: web-server/PdfGenerator.WebApi/Dockerfile
     container_name: web-server
+    ports:
+      - "8080:8080"
     depends_on:
       - postgres
       - minio
@@ -30,7 +32,7 @@ services:
     networks:
       - pdf-generator
     environment:
-      POSTGRES_DB: pdf_generator
+      POSTGRES_DB: pdf_generator_hangfire
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     volumes:
