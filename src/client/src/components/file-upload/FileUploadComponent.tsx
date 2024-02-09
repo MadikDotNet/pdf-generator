@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import styles from './FileUploadComponent.module.css';
 
-
 function FileUploadComponent() {
     const [selectedFile, setSelectedFile] = useState(null);
     const [fileName, setFileName] = useState('No files selected');
@@ -21,7 +20,7 @@ function FileUploadComponent() {
         formData.append('htmlContent', selectedFile);
 
         try {
-            await fetch('http://localhost:5000/PdfConversion/queue-conversion', {
+            await fetch('http://localhost:8080/PdfConversion/queue-conversion', {
                 method: 'POST',
                 body: formData,
             });

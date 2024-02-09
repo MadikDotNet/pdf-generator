@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
-import PdfConversionList from './features/PdfConversions/components/PdfConversionList'; // Путь к вашему компоненту List
-import FileUploadComponent from './features/PdfConversions/components/FileUploadComponent'; // Путь к вашему компоненту List
+import PdfConversionList from './containers/pdf-conversion-list/PdfConversionList'; // Путь к вашему компоненту List
+import FileUploadComponent from './components/file-upload/FileUploadComponent'; // Путь к вашему компоненту List
 
 function App() {
     return (

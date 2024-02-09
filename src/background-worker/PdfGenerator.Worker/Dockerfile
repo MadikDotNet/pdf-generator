@@ -17,6 +17,7 @@ COPY web-server/PdfGenerator.Infrastructure/PdfGenerator.Infrastructure.csproj w
 COPY web-server/PdfGenerator.Infrastructure.DataAccess/PdfGenerator.Infrastructure.DataAccess.csproj web-server/PdfGenerator.Infrastructure.DataAccess/
 
 COPY background-worker/PdfGenerator.Worker/PdfGenerator.Worker.csproj background-worker/PdfGenerator.Worker/
+COPY web-server/PdfGenerator.IntegrationEvents/PdfGenerator.IntegrationEvents.csproj web-server/PdfGenerator.IntegrationEvents/
 
 RUN dotnet restore "background-worker/PdfGenerator.Worker/PdfGenerator.Worker.csproj"
 
@@ -25,7 +26,7 @@ COPY web-server/PdfGenerator.Domain web-server/PdfGenerator.Domain
 COPY web-server/PdfGenerator.Application web-server/PdfGenerator.Application
 COPY web-server/PdfGenerator.Infrastructure web-server/PdfGenerator.Infrastructure
 COPY web-server/PdfGenerator.Infrastructure.DataAccess web-server/PdfGenerator.Infrastructure.DataAccess
-COPY web-server/PdfGenerator.IntegrationEvents/PdfGenerator.IntegrationEvents.csproj web-server/PdfGenerator.IntegrationEvents/
+COPY web-server/PdfGenerator.IntegrationEvents web-server/PdfGenerator.IntegrationEvents
 COPY background-worker background-worker
 
 WORKDIR "background-worker/PdfGenerator.Worker"

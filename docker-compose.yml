@@ -1,14 +1,27 @@
 version: '3.8'
 services:
   
+  client:
+    build:
+      context: src/client
+    container_name: react-client
+    ports:
+      - "80:80"
+    depends_on:
+      - web-server
+    networks:
+      - pdf-generator
+  
   worker:
     build:
       context: src
       dockerfile: background-worker/PdfGenerator.Worker/Dockerfile
     container_name: background-worker
+    restart: always
     depends_on: 
       - postgres
       - minio
+      - rabbitmq
     networks:
       - pdf-generator
   
@@ -17,15 +30,31 @@ services:
       context: src
       dockerfile: web-server/PdfGenerator.WebApi/Dockerfile
     container_name: web-server
+    restart: always
     ports:
       - "8080:8080"
     depends_on:
       - postgres
       - minio
-      - worker
+      - rabbitmq
     networks:
       - pdf-generator
   
+  rabbitmq:
+    image: rabbitmq:3-management
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    networks:
+      - pdf-generator
+    healthcheck:
+      test: rabbitmq-diagnostics -q ping
+      interval: 30s
+      timeout: 30s
+      retries: 3
+
   postgres:
     image: postgres:latest
     container_name: pg-database
@@ -35,6 +64,11 @@ services:
       POSTGRES_DB: pdf_generator_hangfire
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres -d pdf_generator_hangfire" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     volumes:
       - pg-data:/var/lib/postgresql/data
 
@@ -47,14 +81,13 @@ services:
       MINIO_ROOT_USER: adminadmin
       MINIO_ROOT_PASSWORD: adminadmin
     command: server /data
-    ports:
-      - "9001:9001"
     volumes:
       - minio-data:/data
 
 volumes:
   pg-data:
   minio-data:
+  rabbitmq_data:
 
 networks:
   pdf-generator:

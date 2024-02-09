@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { HubConnection, HubConnectionBuilder } from '@microsoft/signalr';
-import PdfConversionItem from './PdfConversionItem';
-import { PdfConversionModel } from '../types/PdfConversionModel';
+import { HubConnectionBuilder } from '@microsoft/signalr';
+import PdfConversionItem from '../../components/pdf-conversation-item/PdfConversionItem';
+import { PdfConversionModel } from '../../types/PdfConversionModel';
 
 const PdfConversionList: React.FC = () => {
     const [conversions, setConversions] = useState<PdfConversionModel[]>([]);
@@ -9,7 +9,7 @@ const PdfConversionList: React.FC = () => {
 
     const fetchConversions = async () => {
         try {
-            const response = await fetch('http://localhost:5000/PdfConversion');
+            const response = await fetch('http://localhost:8080/PdfConversion');
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
@@ -26,7 +26,7 @@ const PdfConversionList: React.FC = () => {
 
     useEffect(() => {
         const newConnection = new HubConnectionBuilder()
-            .withUrl('http://localhost:5000/pdf-conversion-hub')
+            .withUrl('http://localhost:8080/pdf-conversion-hub')
             .withAutomaticReconnect()
             .build();
 

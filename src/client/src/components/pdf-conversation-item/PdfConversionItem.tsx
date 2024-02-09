@@ -1,5 +1,5 @@
 import React from 'react';
-import { PdfConversionModel, ConversionStatus } from '../types/PdfConversionModel';
+import { PdfConversionModel, ConversionStatus } from '../../types/PdfConversionModel';
 import styles from './PdfConversionItem.module.css'; 
 
 interface PdfConversionItemProps {
@@ -18,7 +18,7 @@ const PdfConversionItem: React.FC<PdfConversionItemProps> = ({ conversion }) => 
         }
     };
 
-    const downloadUrl = `http://localhost:5000/pdfConversion/download-conversion/${conversion.resultPath}`;
+    const downloadUrl = `http://localhost:8080/pdfConversion/download-conversion/${conversion.resultPath}`;
 
     return (
         <div className={styles.conversionItem}>
